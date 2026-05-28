@@ -1,246 +1,138 @@
-# QA Portfolio – Corbett Strydom
-> Aspiring QA Engineer | Business Systems Student | Fintech & Payments Focus | Cape Town, South Africa
+# Corbett Strydom – AI & Automation Portfolio
 
-[![AWS Certified](https://img.shields.io/badge/AWS-Cloud%20Practitioner-FF9900?style=flat&logo=amazon-aws)](https://aws.amazon.com/certification/)
-[![Cybersecurity](https://img.shields.io/badge/Cybersecurity-Certificate%20CPUT-blue?style=flat)](https://www.cput.ac.za/)
-[![Status](https://img.shields.io/badge/Status-Open%20to%20Work-brightgreen?style=flat)]()
-[![Portfolio](https://img.shields.io/badge/Projects-7-4472C4?style=flat)]()
+> Co-Founder at BlkQuarry · AI Consulting · Automation Engineering · Cape Town, South Africa
 
----
-
-## 👋 About Me
-
-I'm a Business Systems student at Rosebank College (graduating 2027) based in Cape Town, South Africa. I'm building a career in **QA engineering with a focus on fintech and payments infrastructure**.
-
-This portfolio documents hands-on testing work across real and industry-standard environments, as well as academic work in financial and transactional data analysis — built to demonstrate practical QA and data skills before entering the industry as a junior QA engineer.
-
-I'm interested in roles involving **integration testing, payment system validation, defect management, and financial data quality** in fintech or digital banking environments.
+[![BlkQuarry](https://img.shields.io/badge/BlkQuarry-AI%20Consulting-2F3FD3?style=flat)](https://blkquarry.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-corbettstrydom-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/corbettstrydom)
+[![Status](https://img.shields.io/badge/Status-Open%20to%20Work-brightgreen?style=flat)](https://blkquarry.com)
+[![Location](https://img.shields.io/badge/Location-Cape%20Town%2C%20SA-0A0F4F?style=flat)]()
 
 ---
 
-## 📁 Portfolio Projects
+## About
 
-### 💳 01 – Stripe Payment Flow Testing
-**Type:** Functional | Risk-Based | Payment Testing  
-**Environment:** Stripe Payments Demo (test mode) · Chrome · Windows 11  
-**Folder:** `/stripe-payment-testing`
+I co-founded [BlkQuarry](https://blkquarry.com), an AI consulting firm that helps mid-size businesses fix broken AI implementations, build custom automation systems, and identify where AI spend is being wasted.
 
-End-to-end structured testing of the Stripe checkout flow covering happy path, card declines, input validation, edge cases, 3D Secure authentication, and post-payment confirmation.
+My work sits at the intersection of business operations and technical delivery. I work with CEOs, Operations Directors, and CFOs to turn underperforming AI investments into measurable results — and I build the tools to make that happen.
 
-| Metric | Result |
+This portfolio documents the automation systems, lead generation tools, and client-facing projects I build as part of that work.
+
+---
+
+## Projects
+
+### 01 – Google Maps Lead Scraper
+
+**Type:** Python · Web Scraping · Lead Generation  
+**Folder:** [`/tools/maps_scraper.py`](./tools/maps_scraper.py)
+
+A Playwright-based scraper that searches Google Maps by business type and location, extracts business details (name, address, phone, website), and then visits each website to extract contact email addresses. Exports everything to a timestamped CSV ready for outreach.
+
+| Feature | Detail |
 |---|---|
-| Test Cases Executed | 12 |
-| Tests Passed | 12 |
-| Risks Identified | 8 |
-| Test Areas Covered | Happy Path, Error Handling, Validation, Edge Cases, Authentication, Post-Payment |
+| Input | Business type + location (e.g. "marketing agency in Cape Town") |
+| Output | CSV with name, address, phone, website, email |
+| Email extraction | Scrapes business website and /contact page |
+| Max results | Configurable, up to ~120 per search |
 
-**Deliverables:**
-- ✅ User journey map (6-step happy path)
-- ✅ 12 test cases with expected and actual results
-- ✅ Risk register with likelihood, severity, and safeguard recommendations
-- ✅ Screenshot evidence for each test case
-- ✅ Key findings report
-
-**🔍 Key Finding:**  
-Idempotency handling confirmed — rapid double-click on Pay produces only one payment intent. No duplicate charge created. Button is correctly disabled on first click with loading state shown.
+**Use case:** BlkQuarry outbound prospecting — identify SMEs by industry and location, extract decision-maker contact info at scale.
 
 ---
 
-### 🛒 02 – SauceDemo E-Commerce Exploratory Testing
-**Type:** Exploratory | Functional | Multi-Persona Testing  
-**Environment:** saucedemo.com · Chrome · Windows 11  
-**Folder:** `/saucedemo-testing`
+### 02 – Cold Email Sender
 
-Exploratory and functional testing across three user personas (`standard_user`, `problem_user`, `performance_glitch_user`), uncovering functional defects, UI failures, and a session-level security finding.
+**Type:** Python · SMTP · Outbound Automation  
+**Folder:** [`/tools/cold_email_sender.py`](./tools/cold_email_sender.py)
 
-| Metric | Result |
+Reads a leads CSV (from the scraper or any source), sends personalised cold emails via SMTP with configurable delay between sends to avoid spam filters. Works with Zoho, Gmail, Outlook, or any SMTP provider. Logs every send attempt to a timestamped CSV.
+
+| Feature | Detail |
 |---|---|
-| Bugs Logged | 15 |
-| Critical / High Severity | 9 |
-| User Personas Tested | 3 |
-| Duplicate Bugs Identified | 6 (correctly linked to root cause SD-BUG-004) |
+| Input | Leads CSV + SMTP credentials |
+| Personalisation | Business name injected into subject and body |
+| Providers | Zoho, Gmail, Outlook, custom SMTP |
+| Safety | Configurable delay between sends (default 45s) |
+| Logging | Sent/failed log with timestamps |
 
-**Deliverables:**
-- ✅ 15 bug reports with severity, priority, steps to reproduce, and screenshot evidence
-- ✅ Key findings report with risk impact assessment
-- ✅ Correct deduplication of product navigation defects to a single root cause
-
-**🔍 Key Finding:**  
-Cart contents persisted between different user sessions after a logout/login switch. In a real system, this is a **session isolation defect** with data privacy implications — relevant to any fintech or e-commerce platform handling user data.
+**Use case:** BlkQuarry outbound sequence — follow up on scraped leads with a personalised first-touch email at scale, without paying for a SaaS tool.
 
 ---
 
-### 🇿🇦 03 – Takealot Cart & Checkout Testing
-**Type:** Functional | Exploratory | Real-World Platform  
-**Environment:** takealot.com · Chrome · Windows 11  
-**Folder:** `/takealot-testing`
+### 03 – n8n Business Process Automation (Client Project)
 
-Functional and exploratory testing of South Africa's largest e-commerce platform, focusing on cart management, checkout flow, session handling, input validation, and UI responsiveness.
+**Type:** n8n · Workflow Automation · Client Delivery  
+**Status:** Delivered — Professional Services Client, Cape Town
 
-| Metric | Result |
-|---|---|
-| Test Cases Executed | 10 |
-| Passed | 9 |
-| Not Run | 1 (session timeout – flagged honestly, not forced) |
-| Bugs Logged | 10 |
+Built and deployed an n8n automation pipeline for a professional services client, replacing a manual multi-step workflow with a fully automated system. The solution handled data routing between multiple business tools, eliminating repetitive manual tasks and reducing operational overhead.
 
-**Deliverables:**
-- ✅ 10 structured test cases with pass/fail status
-- ✅ 10 bug reports covering UI, validation, state management, and concurrency
-- ✅ Tested on a live production environment
+**Scope:**
+- Requirements gathering and process mapping
+- n8n pipeline architecture and build
+- End-to-end testing and error handling
+- Handover documentation and client walkthrough
 
-**🔍 Key Finding:**  
-Rapid quantity changes cause delayed and inconsistent cart UI updates — a timing/concurrency defect with direct relevance to high-traffic payment and checkout systems.
+**Outcome:** Manual process eliminated. Client's team no longer handles data routing between tools manually.
+
+> *This is a paid client engagement delivered under BlkQuarry. Full workflow documentation available on request.*
 
 ---
 
-### 📄 04 – Stripe Initial Test Report
-**Type:** Structured Functional Testing  
-**Environment:** Stripe Payments Demo · Chrome · Windows 11  
-**Folder:** `/stripe-initial-report`
+### 04 – QA & Data Analysis Projects (Previous Work)
 
-An earlier focused test report covering 4 core payment scenarios with formal pass/fail reporting, scope definition, environment documentation, and a key findings summary. Included to show portfolio progression and testing discipline from the start.
+**Type:** Quality Assurance · Fintech · Data Analysis  
+**Folder:** [`/Portfolio`](./Portfolio)
 
-| Metric | Result |
-|---|---|
-| Test Cases | 4 |
-| Passed | 4 |
-| Scenarios Covered | Happy path, generic decline, invalid card, duplicate submission |
+A collection of structured QA testing projects and financial data analysis work completed prior to founding BlkQuarry. Included to demonstrate testing discipline, attention to detail, and data skills that underpin the consulting work.
 
----
-
-### 📊 05 – Financial News & Market Events Analysis
-**Type:** Financial Data Analysis | Business Intelligence | Data Visualisation  
-**Tools:** Google Looker Studio · Microsoft Excel · CSV Data Analysis  
-**Folder:** `/university-work/financial-news-analysis`  
-**Grade:** 80%+
-
-Analysis of two financial news event datasets covering global market movements, trading volumes, sentiment, profit/loss outcomes, and sector impact across 18 major indices. The primary dataset contains **3,033 real market event records** spanning February–August 2025, sourced from major financial publications.
-
-| Metric | Detail |
-|---|---|
-| Total Records | 3,033 market event entries |
-| Date Range | February 2025 – August 2025 |
-| Market Indices | 18 (Nasdaq, FTSE 100, S&P 500, Hang Seng, DAX, Nikkei 225, ASX 200, and more) |
-| Companies Tracked | Apple, Microsoft, Tesla, JP Morgan Chase, Goldman Sachs, Boeing, Samsung, and more |
-| Market Event Types | 20 (IPO launches, interest rate changes, geopolitical events, earnings reports, and more) |
-| Sectors Covered | 18 (Finance, Technology, Healthcare, Energy, Automotive, and more) |
-| News Sources | Bloomberg, Reuters, Financial Times, Wall Street Journal, CNBC, and more |
-| Outcome Analysis | Profit/Loss classification using IF logic across all records |
-
-**Deliverables:**
-- ✅ Raw datasets (CSV) with financial news events and market data
-- ✅ Interactive Looker Studio dashboard with market event analysis
-- ✅ Sentiment analysis across market events and sectors
-- ✅ Profit/Loss outcome classification using Excel IF functions
-- ✅ Trading volume and index change analysis across global markets
-- ✅ Pivot summary table filtered by company (Apple Inc.)
-
-**📊 Live Dashboard:** [View Financial News Events Dashboard on Looker Studio](https://lookerstudio.google.com/reporting/16d1bbea-ba9d-4011-9d30-334b0c7fc81c)
-
-**🔍 Why This Matters for Fintech QA:**  
-Understanding the financial data that flows through payment and banking systems is as important as knowing how to test it. This project demonstrates hands-on experience with real financial data structures, market event classification, sentiment analysis, and global market indices — all directly relevant to testing data integrity and validation in fintech environments.
+Highlights:
+- Stripe payment flow testing (12 test cases, 8 risks identified)
+- SauceDemo exploratory testing (15 bugs, session isolation defect found)
+- Financial market events analysis (3,033 records, Looker Studio dashboard)
+- Ride bookings transactional data analysis (150,000 records)
 
 ---
 
-### 🚗 06 – Ride Bookings Transactional Data Analysis
-**Type:** Transactional Data Analysis | Operational Data Quality | Business Intelligence  
-**Tools:** Microsoft Excel · CSV Data Analysis  
-**Folder:** `/university-work/ride-bookings-analysis`  
-**Grade:** 80%+
+## Tools & Technologies
 
-Analysis of a production-scale ride-booking dataset containing **150,000 booking records** across a full year. The dataset covers booking status, cancellation flows, payment methods, vehicle types, driver and customer ratings, ride distances, and booking values — mirroring the kind of transactional data that sits behind any payments or mobility fintech platform.
-
-| Metric | Detail |
-|---|---|
-| Total Records | 150,000 ride booking entries |
-| Date Range | Full year (365 days) |
-| Booking Statuses | Completed, Cancelled by Customer, Cancelled by Driver, Incomplete, No Driver Found |
-| Vehicle Types | 7 (Auto, Bike, eBike, Go Mini, Go Sedan, Premier Sedan, Uber XL) |
-| Payment Methods | 6 (Cash, Credit Card, Debit Card, UPI, Uber Wallet) |
-| Locations | 176 unique pickup and drop locations |
-| Cancellation Reasons | Customer-side (5 reasons) and Driver-side (4 reasons) tracked separately |
-| Ratings | Driver and Customer ratings (3.0–5.0 scale) |
-
-**Deliverables:**
-- ✅ Raw dataset (CSV) with 150,000 booking records
-- ✅ Booking status distribution analysis (completed vs cancelled vs incomplete)
-- ✅ Cancellation pattern analysis by customer and driver reason
-- ✅ Payment method breakdown across booking types
-- ✅ Null value analysis — understanding conditional data population by booking status
-- ✅ Driver and customer rating trend analysis
-
-**🔍 Why This Matters for Fintech QA:**  
-This dataset mirrors the transactional data structure of any ride-hailing or payments platform. Key QA-relevant observations include: booking values and ratings are null for cancelled/incomplete rides (conditional data population based on status), payment method coverage across 6 types, including UPI and digital wallets, and cancellation reason tracking on both sides of a transaction — all patterns directly applicable to testing payment and booking systems in fintech.
-
----
-
-### 🎓 07 – University Academic Projects
-**Type:** Academic | Business Systems | Data Analysis  
-**Folder:** `/university-work`  
-**Grade:** 80%+ across projects
-
-A collection of academic projects completed as part of my Bachelor of Information Technology in Business Systems at Rosebank College. Included to demonstrate consistent academic performance and technical breadth alongside independent portfolio work.
-
----
-
-## 🛠️ Skills Demonstrated
-
-| Skill | Evidence |
-|---|---|
-| Test case design & execution | Projects 01, 02, 03, 04 |
-| Bug reporting & defect lifecycle | SauceDemo (15 bugs), Takealot (10 bugs) |
-| Risk-based testing | Stripe risk register |
-| Exploratory testing | SauceDemo, Takealot |
-| Multi-persona testing | SauceDemo (3 user types) |
-| Session & security-aware testing | SauceDemo cross-user cart finding |
-| Evidence & screenshot documentation | All QA projects |
-| Duplicate/root cause identification | SauceDemo SD-BUG-004 |
-| Payment flow testing | Stripe (both projects) |
-| Financial data analysis | 3,033-record market events dataset |
-| Transactional data analysis | 150,000-record ride bookings dataset |
-| Null value & data quality analysis | Ride bookings conditional data population |
-| Data visualisation | Looker Studio dashboard |
-| Excel IF functions & data classification | Profit/Loss outcome analysis |
-| Business intelligence reporting | Financial News Events dashboard |
-
----
-
-## 🧰 Tools & Technologies
-
-![Chrome](https://img.shields.io/badge/Chrome-DevTools-4285F4?style=flat&logo=google-chrome)
-![Jira](https://img.shields.io/badge/Jira-Defect%20Tracking-0052CC?style=flat&logo=jira)
-![Excel](https://img.shields.io/badge/Excel-Advanced-217346?style=flat&logo=microsoft-excel)
-![GitHub](https://img.shields.io/badge/GitHub-Portfolio-181717?style=flat&logo=github)
-![AWS](https://img.shields.io/badge/AWS-Cloud%20Practitioner-FF9900?style=flat&logo=amazon-aws)
-![Python](https://img.shields.io/badge/Python-Scripting%20Basics-3776AB?style=flat&logo=python)
-![SQL](https://img.shields.io/badge/SQL-Query%20Writing-4479A1?style=flat&logo=mysql)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![n8n](https://img.shields.io/badge/n8n-Automation-EA4B71?style=flat)
+![Playwright](https://img.shields.io/badge/Playwright-Web%20Scraping-45ba4b?style=flat)
+![Zapier](https://img.shields.io/badge/Zapier-FF4A00?style=flat&logo=zapier&logoColor=white)
+![Make](https://img.shields.io/badge/Make.com-Automation-6D00CC?style=flat)
+![SQL](https://img.shields.io/badge/SQL-Query%20Writing-4479A1?style=flat&logo=mysql&logoColor=white)
+![SMTP](https://img.shields.io/badge/SMTP-Email%20Automation-grey?style=flat)
 ![Looker Studio](https://img.shields.io/badge/Looker%20Studio-Data%20Visualisation-4285F4?style=flat&logo=google)
-![Wireshark](https://img.shields.io/badge/Wireshark-Network%20Analysis-1679A7?style=flat)
 
 ---
 
-## 📜 Certifications
+## Services (BlkQuarry)
 
-- 🏅 **AWS Certified Cloud Practitioner** — Amazon Web Services
-- 🏅 **Cybersecurity Certificate** — CPUT
+| Service | Description | From |
+|---|---|---|
+| AI Business Audit | Identify where AI spend is wasted | $830 |
+| AI Rescue Consulting | Fix broken AI implementations (90-day guarantee) | $4,100 |
+| Custom AI Bot Build | Build AI systems that work (3–6 weeks) | $1,950 |
+| Monthly Retainer | Ongoing AI operations support | $440/mo |
+| Fractional AI Officer | Part-time AI leadership for your business | $1,100/mo |
 
----
-
-## 🎓 Education
-
-**Bachelor of Information Technology in Business Systems**  
-Rosebank College · In Progress · Expected 2027  
-*Relevant coursework: Business systems analysis, process optimisation, data analysis, cybersecurity foundations, cloud computing*
-
----
-
-## 📬 Contact
-
-📧 Corbettstrydom6@gmail.com  
-🔗 [linkedin.com/in/corbett-strydom](https://www.linkedin.com/in/corbett-strydom)  
-📍 Cape Town, South Africa  
+→ [blkquarry.com](https://blkquarry.com)
 
 ---
 
-*Open to junior QA, integration testing, and business systems roles in fintech and digital banking.*
+## Certifications
+
+- Cybersecurity Certificate — CPUT
+- Bachelor of IT in Business Systems — IIE Rosebank College (in progress, 2027)
+
+---
+
+## Contact
+
+📧 corbett.strydom000@gmail.com  
+🔗 [linkedin.com/in/corbettstrydom](https://www.linkedin.com/in/corbettstrydom)  
+🌐 [blkquarry.com](https://blkquarry.com)  
+📍 Cape Town, South Africa
+
+---
+
+*Available for Upwork contracts · Automation builds · AI implementation projects*

@@ -36,7 +36,7 @@ Built and deployed an n8n automation pipeline for a professional services client
 
 **Outcome:** Manual process eliminated. Client's team no longer handles data routing between tools manually.
 
-> This is a paid client engagement delivered under BlkQuarry. Full workflow documentation available on request.
+> This is a paid client engagement delivered under BlkQuarry.
 
 ---
 

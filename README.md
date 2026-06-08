@@ -1,5 +1,5 @@
 # Corbett Strydom – AI & Business Operations Consulting Portfolio
-
+[View Case Study Deck →](./BlkQuarry_PrintTracker_Final.pptx)
 > Co-Founder at BlkQuarry · Business Systems · Automation Engineering · Cape Town, South Africa
 
 ![BlkQuarry](https://img.shields.io/badge/BlkQuarry-AI%20Consulting-0A0F4F?style=flat-square)
